@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Awesome Game!" />
+    <meta property="og:description" content="Try out this amazing puzzle game and share your results!" />
+    <meta property="og:image" content="link-to-image" />
+    <meta property="og:url" content="http://yourwebsite.com" />
+    <title>Game Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .share-buttons {
+            margin-top: 20px;
+        }
+
+        .share-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            background-color: #4267B2;
+            margin: 5px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .share-buttons a.twitter {
+            background-color: #1DA1F2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to the Puzzle Game!</h1>
+        <p>Try solving the puzzle below and share your score with your friends!</p>
+
+        <button onclick="startGame()">Start Game</button>
+
+        <div id="game"></div>
+
+        <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://yourwebsite.com" target="_blank">Share on Facebook</a>
+            <a href="https://twitter.com/intent/tweet?url=http://yourwebsite.com&text=I just played this awesome game!" target="_blank" class="twitter">Share on Twitter</a>
+        </div>
+    </div>
+
+    <script>
+        function startGame() {
+            // A simple game logic to show interaction
+            const gameDiv = document.getElementById('game');
+            gameDiv.innerHTML = '<p>Solve this puzzle: What is 5 + 3?</p>' +
+                                '<input type="text" id="answer" placeholder="Your answer">' +
+                                '<button onclick="checkAnswer()">Submit</button>';
+        }
+
+        function checkAnswer() {
+            const answer = document.getElementById('answer').value;
+            if (answer == '8') {
+                alert('Correct! Well done!');
+                saveProgress();
+            } else {
+                alert('Incorrect, try again!');
+            }
+        }
+
+        function saveProgress() {
+            // Save user progress using localStorage
+            localStorage.setItem('gameCompleted', 'true');
+        }
+
+        // Check if the user has already completed the game
+        window.onload = function() {
+            if (localStorage.getItem('gameCompleted') === 'true') {
+                document.getElementById('game').innerHTML = '<p>You have already completed this game!</p>';
+            }
+        }
+    </script>
+
+</body>
+</html>
